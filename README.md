@@ -12,6 +12,16 @@ NOTE: THIS IS FOR 5E
 
 Prisma 2, Node and (hopefully) graphql-yoga once it's running and set up
 
+# How? 
+
+ - Edit your connection string in `prisma/.env`. (it uses postgres by default)
+ - `npm install` - install dependancies
+ - `npx prisma migrate up --experimental` - migrate the database table setup
+
+# Thats it????
+
+I'M WORKING ON IT.
+
 # Why?
 
 Roll20 broke my sheet and i'm mad.
