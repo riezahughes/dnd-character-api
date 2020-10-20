@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Character{
+  id  Int @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  name String?
+  race  Race  @relation(fields: [raceId], references: [id])
+  raceId Int
+  class Class @relation(fields: [classId], references: [id])
+  classId Int
+}
+
+model Race{
+  id  Int @default(autoincrement()) @id
+  name  String?
+}
+
+model Class{
+  id  Int @default(autoincrement()) @id
+  name String?
+}
+
+model SubClass{
+  id  Int @default(autoincrement()) @id
+  name String?
+}
+
+model Weapons{
+  id  Int @default(autoincrement()) @id
+  name String?
+}
+
+model Items{
+  id  Int @default(autoincrement()) @id
+  name String?
+}
