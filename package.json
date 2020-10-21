@@ -2,9 +2,10 @@
   "name": "dnd-character-api",
   "version": "1.0.0",
   "description": "A character generator and updater for DnD. At least that's the hope. It'll be a full working api where you can store, retrieve and update characters. There will be a frontend where you can create a character and do the whole level up process in a simple manner using the api to retrieve the relevant information.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,12 @@
     "@prisma/cli": "^2.9.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.0"
   },
   "dependencies": {
-    "@prisma/client": "^2.9.0"
+    "@prisma/client": "^2.9.0",
+    "dotenv": "^8.2.0",
+    "graphql-yoga": "^1.18.3"
   }
 }
