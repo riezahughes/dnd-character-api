@@ -10,6 +10,6 @@ jobs:
             message: "```dif\n+CircleCi has given the OKAY.. apparently\n```"
             webhook: $DISCORD_WEBHOOK
 workflows:
-  node-tests:
+  build-test-deploy:
     jobs:
       - test-and-send
