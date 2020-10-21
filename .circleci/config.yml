@@ -1,11 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@4.1.0
-jobs:
-  test-dnd-node:
-    steps:
-      - run: npm test
 workflows:
   node-tests:
     jobs:
-      - test-dnd-node
+      - node/test
