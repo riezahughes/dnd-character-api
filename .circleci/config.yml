@@ -2,16 +2,10 @@ version: 2.1
 orbs:
   node: circleci/node@4.1.0
   discord: teka23/discord@0.0.1
-jobs:
-  test-and-send:
-    docker:
-        - image: cimg/base:2020.01
-    steps:
-        - node/test
-        - discord/approval-notification:
-            message: "```dif\n+CircleCi has given the OKAY.. apparently\n```"
-            webhook: $DISCORD_WEBHOOK
 workflows:
-  build-test-deploy:
+  node-tests:
     jobs:
-      - test-and-send
+      - node/test
+      - discord/approval-notification:
+          message: "```dif\n+Successfully Passed CI Tests\n```"
+          webhook: $DISCORD_WEBHOOK
