@@ -1,7 +1,11 @@
 version: 2.1
 orbs:
   node: circleci/node@4.1.0
+  discord: teka23/discord@0.0.1
 workflows:
   node-tests:
     jobs:
       - node/test
+      - discord/approval-notification:
+          message: "Successfully Passed CI Tests"
+          webhook: $DISCORD_WEBHOOK
