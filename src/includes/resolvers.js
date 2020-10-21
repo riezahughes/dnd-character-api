@@ -10,6 +10,11 @@ const resolvers = {
         name: args.name,
       },
     }),
+    deleteRace: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
   },
 };
 

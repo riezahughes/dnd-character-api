@@ -125,4 +125,5 @@ type Query{
 
 type Mutation{
     createRace(name: String!): Race
+    deleteRace(id: Int!): Race
 }
