@@ -3,6 +3,7 @@ const resolvers = {
     characters: (_, args, context) => context.prisma.character.findMany(),
     races: (_, args, context) => context.prisma.race.findMany(),
     classes: (_, args, context) => context.prisma.class.findMany(),
+    dataResources: (_, args, context) => context.prisma.dataResource.findMany(),
   },
   Mutation: {
     createRace: (_, args, context) => context.prisma.race.create({

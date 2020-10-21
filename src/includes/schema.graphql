@@ -60,14 +60,6 @@ type Equipment{
   description: String!
 }
 
-type DiceModifier{
-  id: Int!
-  name: String!
-  scope: String!
-  diceSides: Int!
-  rolltype: String!
-}
-
 type Race{
   id: Int!
   name: String!
@@ -82,6 +74,15 @@ type Class{
   hpperlevel_roll: Int!
   proficiencies: [Proficiency]
   traits: [Trait]
+  classresources: [ClassResource]
+}
+
+type ClassResource{
+  id: Int!
+  class: Class!
+  name: String!
+  level: Int!
+  value: String!
 }
 
 type Skill{
@@ -117,13 +118,29 @@ type Trait{
   level: Int!
 }
 
+type DataResource{
+  id: Int!
+  name: String!
+  acronym: String!
+}
+
+type DiceModifier{
+  id: Int!
+  name: String!
+  scope: String!
+  diceSides: Int!
+  rolltype: String!
+}
+
 type Query{
     characters: [Character]
     races: [Race]
     classes: [Class]
+    dataResources: [DataResource]
 }
 
 type Mutation{
     createRace(name: String!): Race
     deleteRace(id: Int!): Race
+    createDataResource(name: String!, acronym: String!): DataResource
 }
