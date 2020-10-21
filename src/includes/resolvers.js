@@ -1,6 +1,15 @@
 const resolvers = {
   Query: {
-    hello: (_, { name }) => `Hello ${name || 'World'}`,
+    characters: (_, args, context) => context.prisma.character.findMany(),
+    races: (_, args, context) => context.prisma.race.findMany(),
+    classes: (_, args, context) => context.prisma.class.findMany(),
+  },
+  Mutation: {
+    createRace: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
   },
 };
 

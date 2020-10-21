@@ -1,0 +1,128 @@
+scalar DateTime
+
+type Character{
+  id: Int!
+  createdAt: DateTime!
+  name: String!
+  race:  Race!
+  class: Class!
+  alignment: String
+  experience: Int
+  background: String
+  personality: String
+  ideals: String
+  bonds: String
+  flaw: String
+  hp: Int!
+  temphp: Int
+  maxhp: Int!
+  strength: Int!
+  dexterity: Int!
+  intelligence: Int!
+  wisdom: Int!
+  charisma: Int!
+  age: Int
+  size: String
+  height: String
+  weight: String
+  eyes: String
+  skin: String
+  hair: String
+  appearance: String
+  allies_org: String
+  backstory: String
+  treasure: String
+  equipment: [CharacterEquipment]!
+}
+
+type CharacterEquipment{
+  id: Int!
+  character: Character!
+  item: Equipment!
+}
+
+type CharacterSkills{
+  id: Int!
+  character: Character!
+  skill: Skill!
+}
+
+type CharacterSpells{
+  id: Int!
+  character: Character!
+  spell: Spell!
+}
+
+type Equipment{
+  id: Int!
+  name: String!
+  type: String!
+  description: String!
+}
+
+type DiceModifier{
+  id: Int!
+  name: String!
+  scope: String!
+  diceSides: Int!
+  rolltype: String!
+}
+
+type Race{
+  id: Int!
+  name: String!
+}
+
+type Class{
+  id: Int!
+  name: String!
+  hitdice: String!
+  hpfirstlevel: Int!
+  hpperlevel: Int!
+  hpperlevel_roll: Int!
+  proficiencies: [Proficiency]
+  traits: [Trait]
+}
+
+type Skill{
+  id: Int!
+  name: String!
+}
+
+type Spell{
+  id: Int!
+  name: String!
+}
+
+type SubClass{
+  id: Int!
+  name: String!
+}
+
+type Deity{
+  id: Int!
+  name: String!
+}
+
+type Proficiency{
+  id: Int!
+  name: String!
+}
+
+type Trait{
+  id: Int!
+  name: String!
+  description: String!
+  class: Class!
+  level: Int!
+}
+
+type Query{
+    characters: [Character]
+    races: [Race]
+    classes: [Class]
+}
+
+type Mutation{
+    createRace(name: String!): Race
+}
