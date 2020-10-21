@@ -12,14 +12,6 @@ const resolvers = require('./includes/resolvers');
 
 const typeDefs = gql(fs.readFileSync(__dirname.concat('/includes/schema.graphql'), 'utf8'));
 
-// const resolvers = {
-//   Query: {
-//     characters: (_, args, context) => context.prisma.characters,
-//     races: (_, args, context) => context.prisma.races.findMany(),
-//     classes: (_, args, context) => context.prisma.classes.findMany(),
-//   },
-// };
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
