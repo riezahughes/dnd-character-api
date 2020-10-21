@@ -5,7 +5,7 @@ orbs:
 jobs:
   test-and-send:
     docker:
-        image: cimg/base:2020.01
+        - image: cimg/base:2020.01
     steps:
         - node/test
         - discord/approval-notification:
