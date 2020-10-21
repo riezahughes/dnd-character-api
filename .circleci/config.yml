@@ -7,5 +7,5 @@ workflows:
     jobs:
       - node/test
       - discord/approval-notification:
-          message: "```dif\n+Successfully Passed CI Tests\n```"
+          message: \`\`\`diff\n+Successfully Passed CI Tests\n\`\`\`
           webhook: $DISCORD_WEBHOOK
