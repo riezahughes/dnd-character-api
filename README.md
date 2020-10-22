@@ -1,6 +1,6 @@
 # What is this?
 
-A character generator and updater for API DnD. At least that's the hope. It'll be a full working api where you can store, retrieve and update characters. There will be a frontend where you can create a character and do the whole level up process in a simple manner using the api to retrieve the relevant information.
+A character generator and updater API for DnD. At least that's the hope. It'll be a full working api where you can store, retrieve and update characters. There will be a frontend where you can create a character and do the whole level up process in a simple manner using the api to retrieve the relevant information.
 
 Eg: Filter by class and level to get the number of spells. Filter one further and do it by invocation to hunt for specific spell types.
 
