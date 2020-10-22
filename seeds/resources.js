@@ -140,7 +140,6 @@ const resourceListToSeed = [
 
 async function main() {
   for (const resource of resourceListToSeed) {
-    console.log('Made it');
     await prisma.dataResource.create({
       data: {
         name: resource.name,
@@ -148,6 +147,7 @@ async function main() {
       },
     });
   }
+  console.log('Seeded Book Data');
 }
 
 main()
