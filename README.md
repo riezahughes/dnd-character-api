@@ -1,6 +1,6 @@
 # What is this?
 
-A character generator and updater for DnD. At least that's the hope. It'll be a full working api where you can store, retrieve and update characters. There will be a frontend where you can create a character and do the whole level up process in a simple manner using the api to retrieve the relevant information.
+A character generator and updater for API DnD. At least that's the hope. It'll be a full working api where you can store, retrieve and update characters. There will be a frontend where you can create a character and do the whole level up process in a simple manner using the api to retrieve the relevant information.
 
 Eg: Filter by class and level to get the number of spells. Filter one further and do it by invocation to hunt for specific spell types.
 
@@ -10,7 +10,7 @@ NOTE: THIS IS FOR 5E
 
 # What does it use?
 
-Prisma 2, Node and (hopefully) graphql-yoga once it's running and set up
+Prisma 2 and Apollo.
 
 # How? 
 
@@ -27,6 +27,14 @@ Prisma 2, Node and (hopefully) graphql-yoga once it's running and set up
 # Thats it????
 
 I'M WORKING ON IT.
+
+# Thoughts?
+
+It's literally the exact same amount of work it would take to write up migrations for postgres manually. The only difference is the oppertunity to work with more than just postgres if you wanted, and also the syntax is ever so slightly nicer. 
+
+There are more commands compared to the first prisma, too. Rather than it being just under one. Though i suppose i could write a package to deal with this a little better. 
+
+It's not been bad, but it's not great either. Definately a *Good* though.
 
 # Why?
 
