@@ -42,6 +42,7 @@ const resolvers = {
     createRace: (_, args, context) => context.prisma.race.create({
       data: {
         name: args.name,
+        traits: args.traits,
       },
     }),
     updateRace: (_, args, context) => context.prisma.race.update({
@@ -49,56 +50,86 @@ const resolvers = {
         name: args.name,
         traits: args.traits,
       },
+      where: {
+        id: args.id,
+      },
     }),
     deleteRace: (_, args, context) => context.prisma.race.delete({
       where: {
         id: args.id,
       },
     }),
-    createClass: (_, args, context) => context.prisma.race.create({
+    createClass: (_, args, context) => context.prisma.class.create({
       data: {
         name: args.name,
+        hitdice: args.hitdice,
+        hpfirstlevel: args.hpfirstlevel,
+        hpperlevel: args.hpperlevel,
+        hpperlevel_roll: args.hpperlevel_roll,
+        proficiencies: args.proficiencies,
+        classfeatures: args.classfeatures,
+        classresources: args.classresources,
       },
     }),
-    updateClass: (_, args, context) => context.prisma.race.update({
+    updateClass: (_, args, context) => context.prisma.class.update({
       data: {
         name: args.name,
-        traits: args.traits,
+        hitdice: args.hitdice,
+        hpfirstlevel: args.hpfirstlevel,
+        hpperlevel: args.hpperlevel,
+        hpperlevel_roll: args.hpperlevel_roll,
+        proficiencies: args.proficiencies,
+        classfeatures: args.classfeatures,
+        classresources: args.classresources,
       },
-    }),
-    deleteClass: (_, args, context) => context.prisma.race.delete({
       where: {
         id: args.id,
       },
     }),
-    createDataResource: (_, args, context) => context.prisma.race.create({
-      data: {
-        name: args.name,
-      },
-    }),
-    updateDataResource: (_, args, context) => context.prisma.race.update({
-      data: {
-        name: args.name,
-        traits: args.traits,
-      },
-    }),
-    deleteDataResource: (_, args, context) => context.prisma.race.delete({
+    deleteClass: (_, args, context) => context.prisma.class.delete({
       where: {
         id: args.id,
       },
     }),
-    createLanguage: (_, args, context) => context.prisma.race.create({
+    createDataResource: (_, args, context) => context.prisma.dataResource.create({
       data: {
         name: args.name,
       },
     }),
-    updateLanguage: (_, args, context) => context.prisma.race.update({
+    updateDataResource: (_, args, context) => context.prisma.dataResource.update({
       data: {
         name: args.name,
-        traits: args.traits,
+        acronym: args.traits,
+      },
+      where: {
+        id: args.id,
       },
     }),
-    deleteLanguage: (_, args, context) => context.prisma.race.delete({
+    deleteDataResource: (_, args, context) => context.prisma.dataResource.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createLanguage: (_, args, context) => context.prisma.language.create({
+      data: {
+        name: args.name,
+        type: args.type,
+        script: args.script,
+        source: args.source,
+      },
+    }),
+    updateLanguage: (_, args, context) => context.prisma.language.update({
+      data: {
+        name: args.name,
+        type: args.type,
+        script: args.script,
+        source: args.source,
+      },
+      where: {
+        id: args.id,
+      },      
+    }),
+    deleteLanguage: (_, args, context) => context.prisma.language.delete({
       where: {
         id: args.id,
       },

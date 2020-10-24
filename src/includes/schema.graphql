@@ -325,7 +325,7 @@ type Mutation{
 
     createLanguage(name: String!, type: String!, script: String, source: DataResource!): Language
     updateLanguage(id: Int!, name: String, type: String, script: String, source: DataResource): Language
-    deteleLanguage(id: Int!): Language
+    deleteLanguage(id: Int!): Language
 
     createFeat(name: String!, abillity: String, prerequisite: String, description: String!, source: DataResource!): Feat
     updateFeat(id: Int!, name: String, abillity: String, prerequisite: String, description: String, source: DataResource): Feat
@@ -414,5 +414,5 @@ type Mutation{
 
     createVehicleAction(vehicle: Vehicle, name: String!, description: String!): VehicleAction
     updateVehicleAction(id: Int, vehicle: Vehicle, name: String!, description: String!): VehicleAction
-    deleteVehicle(id: Int!): VehicleAction
+    deleteVehicleAction(id: Int!): VehicleAction
 }
