@@ -45,6 +45,10 @@ model Character{
   backstory String
   treasure String
   equipment CharacterEquipment[]
+  feats CharacterFeat[]
+  skills CharacterSkill[]
+  spells CharacterSpells[]
+  diety Deity
 }
 
 model CharacterEquipment{
@@ -53,28 +57,38 @@ model CharacterEquipment{
   item Equipment
 }
 
-model CharacterSkills{
-  id Int @default(autoincrement()) @id
-  character Character
-  skill Skill
-}
-
 model CharacterSpells{
   id Int @default(autoincrement()) @id
   character Character
   spell Spell
 }
 
+model CharacterFeat{
+  id Int @default(autoincrement()) @id
+  character Character
+  feats Feat[]
+}
+
+model CharacterSkill{
+  id  Int @default(autoincrement()) @id
+  character Character
+  skill Skill
+  proficient Boolean
+}
+
 model Equipment{
   id  Int @default(autoincrement()) @id
   name String?
   type String?
+  goldWorth String?
+  weight String?
   description String?
 }
 
 model Race{
   id  Int @default(autoincrement()) @id
   name  String?
+  traits Trait[]
 }
 
 model Class{
@@ -85,7 +99,7 @@ model Class{
   hpperlevel Int?
   hpperlevel_roll Int?
   proficiencies Proficiency[]
-  traits Trait[]
+  classfeatures ClassFeature[]
   classresources ClassResource[]
 }
 
@@ -97,6 +111,14 @@ model ClassResource{
   value String?
 }
 
+model ClassFeature{
+  id Int @default(autoincrement()) @id
+  class Class
+  name String?
+  level Int?
+  description String?
+}
+
 model SubClass{
   id  Int @default(autoincrement()) @id
   name String?
@@ -105,16 +127,85 @@ model SubClass{
 model Skill{
   id  Int @default(autoincrement()) @id
   name String?
+  statroll String?
+}
+
+model Condition{
+  id  Int @default(autoincrement()) @id
+  type String?
+  name String?
+  description String?
+  source DataResource
+}
+
+model Background{
+  id  Int @default(autoincrement()) @id
+  name String?
+  skillproficiencies String?
+  source DataResource
+}
+
+model Language{
+  id  Int @default(autoincrement()) @id
+  name String?
+  type String
+  script String
+  source DataResource
+}
+
+model Feat{
+  id  Int @default(autoincrement()) @id
+  name String?
+  ability String?
+  prerequisite String?
+  source DataResource?
+  description String?
 }
 
 model Spell{
   id  Int @default(autoincrement()) @id
   name String?
+  level Int?
+  time String?
+  school SpellSchool?
+  concentration Boolean
+  range String?
+  source DataResource?
+}
+
+model SpellSchool{
+  id  Int @default(autoincrement()) @id
+  name String?
+  summary String?
+  description String?
+}
+
+model Psyonic{
+  id  Int @default(autoincrement()) @id
+  name String?
+  type String?
+  order String
+  description String?
+  source DataResource
 }
 
 model Deity{
   id  Int @default(autoincrement()) @id
   name String?
+  alignment String?
+  domains String?
+  pantheon String?
+  province String?
+  symbol String?
+  description String?
+}
+
+model SupernaturalPassive{
+  id  Int @default(autoincrement()) @id
+  type String?
+  name String?
+  description String?
+  source DataResource
 }
 
 model Proficiency{
@@ -127,13 +218,47 @@ model Trait{
   name String?
   description String?
   class Class?
-  level Int
 }
 
 model DataResource{
   id Int @default(autoincrement()) @id
   name String?
   acronym String?
+}
+
+model Vehicle{
+  id  Int @default(autoincrement()) @id
+  name String?
+  type String?
+  size String?
+  sizedimensions String?
+  creaturecapacity String?
+  cargocapacity String?
+  travelpace String?
+  speed String?
+  strength Int
+  strengthmod Int
+  dexterity Int
+  dexteritymod Int
+  constitution Int
+  constitutionmod Int
+  intelligence Int
+  intelligencemod Int
+  wisdom Int
+  widsommod Int
+  charisma Int
+  charismamod Int
+  damageimmunities String
+  conditionimmunities Condition[]
+  vehicleactions VehicleAction[]
+  source DataResource
+}
+
+model VehicleAction{
+  id  Int @default(autoincrement()) @id
+  vehicle Vehicle
+  name String?
+  description String?
 }
 
 model DiceModifier{
