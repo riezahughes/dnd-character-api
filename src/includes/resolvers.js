@@ -55,6 +55,214 @@ const resolvers = {
         id: args.id,
       },
     }),
+    createClass: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateClass: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteClass: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createDataResource: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateDataResource: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteDataResource: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createLanguage: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateLanguage: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteLanguage: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createFeat: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateFeat: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteFeat: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createSpell: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateSpell: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteSpell: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createSpellSchool: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateSpellSchool: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteSpellSchool: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createPsyonic: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updatePsyonic: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deletePsyonic: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createDeity: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateDeity: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteDeity: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createSupernaturalPassive: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateSupernaturalPassive: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteSupernaturalPassive: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createProficiency: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateProficiency: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteProficiency: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createTrait: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateTrait: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteTrait: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createVehicle: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateVehicle: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteVehicle: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
+    createVehicleAction: (_, args, context) => context.prisma.race.create({
+      data: {
+        name: args.name,
+      },
+    }),
+    updateVehicleAction: (_, args, context) => context.prisma.race.update({
+      data: {
+        name: args.name,
+        traits: args.traits,
+      },
+    }),
+    deleteVehicleAction: (_, args, context) => context.prisma.race.delete({
+      where: {
+        id: args.id,
+      },
+    }),
   },
 };
 
