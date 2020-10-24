@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -47,7 +47,7 @@ model Character{
   equipment CharacterEquipment[]
   feats CharacterFeat[]
   skills CharacterSkill[]
-  spells CharacterSpell[]
+  spells CharacterSpells[]
   diety Deity
 }
 
@@ -57,7 +57,7 @@ model CharacterEquipment{
   item Equipment
 }
 
-model CharacterSpell{
+model CharacterSpells{
   id Int @default(autoincrement()) @id
   character Character
   spell Spell
@@ -80,7 +80,7 @@ model Equipment{
   id  Int @default(autoincrement()) @id
   name String?
   type String?
-  goldworth String?
+  goldWorth String?
   weight String?
   description String?
 }
@@ -218,7 +218,6 @@ model Trait{
   name String?
   description String?
   class Class?
-  level Int?
 }
 
 model DataResource{

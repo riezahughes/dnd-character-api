@@ -1,0 +1,95 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "CharacterSpell"
+    },
+    {
+      "tag": "CreateField",
+      "model": "CharacterSpell",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "CharacterSpell",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "CharacterSpell",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "CharacterSpell",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "CharacterSpell",
+      "field": "character",
+      "type": "Character",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "CharacterSpell",
+      "field": "spell",
+      "type": "Spell",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteModel",
+      "model": "CharacterSpells"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Character",
+      "field": "spells",
+      "type": "CharacterSpell"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Equipment",
+      "field": "goldworth",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Equipment",
+      "field": "goldWorth"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Trait",
+      "field": "level",
+      "type": "Int",
+      "arity": "Optional"
+    }
+  ]
+}

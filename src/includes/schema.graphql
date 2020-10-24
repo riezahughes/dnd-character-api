@@ -33,6 +33,10 @@ type Character{
   backstory: String
   treasure: String
   equipment: [CharacterEquipment]!
+  feats: [CharacterFeat]
+  skills: [CharacterSkill]
+  spells: [CharacterSpell]
+  diety: Deity
 }
 
 type CharacterEquipment{
@@ -41,28 +45,38 @@ type CharacterEquipment{
   item: Equipment!
 }
 
+type CharacterSpell{
+  id: Int!
+  character: Character!
+  spell: Spell!
+}
+
+type CharacterFeat{
+  id: Int!
+  character: Character
+  feats: Feat[]
+}
+
 type CharacterSkills{
   id: Int!
   character: Character!
   skill: Skill!
-}
-
-type CharacterSpells{
-  id: Int!
-  character: Character!
-  spell: Spell!
+  proficient: Boolean
 }
 
 type Equipment{
   id: Int!
   name: String!
   type: String!
+  goldworth: String!
+  weight: String!
   description: String!
 }
 
 type Race{
   id: Int!
   name: String!
+  traits: Trait[]
 }
 
 type Class{
@@ -73,7 +87,7 @@ type Class{
   hpperlevel: Int!
   hpperlevel_roll: Int!
   proficiencies: [Proficiency]
-  traits: [Trait]
+  classfeatures: [ClassFeature]
   classresources: [ClassResource]
 }
 
@@ -85,14 +99,12 @@ type ClassResource{
   value: String!
 }
 
-type Skill{
+type ClassFeature{
   id: Int!
+  class: Class!
   name: String!
-}
-
-type Spell{
-  id: Int!
-  name: String!
+  level: Int!
+  description: String!
 }
 
 type SubClass{
@@ -100,9 +112,89 @@ type SubClass{
   name: String!
 }
 
+type Skill{
+  id: Int!
+  name: String!
+  statroll: String!
+}
+
+type Condition{
+  id: Int!
+  type: String!
+  name: String!
+  description: String!
+  source: DataResource!
+}
+
+type Background{
+  id: Int!
+  name: String!
+  skillproficiencies: String!
+  source: DataResource!
+}
+
+type Language{
+  id: Int!
+  name: String!
+  type: String!
+  script: String!
+  source: DataResource!
+}
+
+type Feat{
+  id: Int!
+  name: String!
+  ability: String
+  prerequitite: String
+  description: String!
+  source: DataResource!
+}
+
+type Spell{
+  id: Int!
+  name: String!
+  level: Int!
+  time: String!
+  school: SpellSchool!
+  concentration: Boolean
+  range: String!
+  source: DataResource!
+}
+
+type SpellSchool{
+  id: Int!
+  name: String!
+  summary: String!
+  description: String!
+}
+
+type Psyonic{
+  id: Int!
+  name: String!
+  type: String!
+  order: String!
+  description: String!
+  source: DataResource
+}
+
+
 type Deity{
   id: Int!
   name: String!
+  alignment: String!
+  domains: String!
+  pantheon: String!
+  province: String!
+  symbol: String
+  description: String!
+}
+
+type SupernaturalPassive{
+  id: Int!
+  type: String!
+  name: String!
+  description: String!
+  source: DataResource
 }
 
 type Proficiency{
@@ -124,6 +216,41 @@ type DataResource{
   acronym: String!
 }
 
+type Vehicle{
+  id: Int!
+  name: String!
+  type: String!
+  size: String!
+  sizedimensions: String!
+  creaturecapacity: String!
+  cargocapacity: String!
+  travelpace: String!
+  speed: String!
+  strength: Int
+  strengthmod: Int
+  dexterity: Int
+  dexteritymod: Int
+  constitution: Int
+  constitutionmod: Int
+  intelligence: Int
+  intelligencemod: Int
+  wisdom: Int
+  widsommod: Int
+  charisma: Int
+  charismamod: Int
+  damageimmunities: String
+  conditionimmunities: Condition[]
+  vehicleactions: VehicleAction[]
+  source: DataResource
+}
+
+type VehicleAction{
+  id: Int!
+  vehicle: Vehicle
+  name: String!
+  description: String!
+}
+
 type DiceModifier{
   id: Int!
   name: String!
@@ -137,6 +264,8 @@ type Query{
     races: [Race]
     classes: [Class]
     dataResources: [DataResource]
+    languages: [Language]
+    proficiencies: [Proficiency]
 }
 
 type Mutation{
