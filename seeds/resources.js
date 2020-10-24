@@ -21,7 +21,7 @@ const resourceListToSeed = [
   },
   {
     name: 'Dungeon Masters Guide',
-    acronym: ' DMG',
+    acronym: 'DMG',
   },
   {
     name: 'Explorers Guide to Wildemount',
