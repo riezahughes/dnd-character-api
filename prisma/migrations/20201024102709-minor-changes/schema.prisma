@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -166,7 +166,6 @@ model Feat{
 model Spell{
   id  Int @default(autoincrement()) @id
   name String?
-  class Class?
   level Int?
   time String?
   school SpellSchool?
@@ -214,10 +213,6 @@ model SupernaturalPassive{
 model Proficiency{
   id  Int @default(autoincrement()) @id
   name String?
-  bonus String
-  attribute String
-  modifier Int
-  type String?
 }
 
 model Trait{

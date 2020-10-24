@@ -54,10 +54,10 @@ type CharacterSpell{
 type CharacterFeat{
   id: Int!
   character: Character
-  feats: Feat[]
+  feats: [Feat]
 }
 
-type CharacterSkills{
+type CharacterSkill{
   id: Int!
   character: Character!
   skill: Skill!
@@ -76,7 +76,7 @@ type Equipment{
 type Race{
   id: Int!
   name: String!
-  traits: Trait[]
+  traits: [Trait]
 }
 
 type Class{
@@ -115,6 +115,7 @@ type SubClass{
 type Skill{
   id: Int!
   name: String!
+  description: String!
   statroll: String!
 }
 
@@ -145,7 +146,7 @@ type Feat{
   id: Int!
   name: String!
   ability: String
-  prerequitite: String
+  prerequisite: String
   description: String!
   source: DataResource!
 }
@@ -153,6 +154,7 @@ type Feat{
 type Spell{
   id: Int!
   name: String!
+  class: Class!
   level: Int!
   time: String!
   school: SpellSchool!
@@ -200,6 +202,10 @@ type SupernaturalPassive{
 type Proficiency{
   id: Int!
   name: String!
+  bonus: String
+  attribute: String
+  modifier: Int
+  type: String!
 }
 
 type Trait{
@@ -239,8 +245,8 @@ type Vehicle{
   charisma: Int
   charismamod: Int
   damageimmunities: String
-  conditionimmunities: Condition[]
-  vehicleactions: VehicleAction[]
+  conditionimmunities: [Condition]
+  vehicleactions: [VehicleAction]
   source: DataResource
 }
 
@@ -260,16 +266,153 @@ type DiceModifier{
 }
 
 type Query{
+    # single searches
+    character(id: Int): Character
+    race(name: String, id: Int): Race
+    class(name: String, id: Int): Class
+    dataresource(acronym: String, id: Int): DataResource
+    language(name: String, id: Int): Language
+    proficiency(name: String, id: Int): Proficiency
+    equipmentsingle(name: String, id: Int): Equipment
+    skill(name: String, id: Int): Skill
+    condition(name: String, id: Int): Condition
+    background(name: String, class: String, id: Int): Background
+    feat(name: String, id: Int): Feat
+    spell(name: String, id: Int): Spell
+    spellschool(name: String, id: String): SpellSchool
+    psyonic(name: String, id: String): Psyonic
+    deity(name: String, id: String): Deity
+    supernaturalpassive(name: String, id: String): SupernaturalPassive
+    vehicle(name: String, id: String): Vehicle
+    
+    # everything searches
     characters: [Character]
     races: [Race]
     classes: [Class]
-    dataResources: [DataResource]
-    languages: [Language]
+    dataresources: [DataResource]
     proficiencies: [Proficiency]
+    equipmentmany: [Equipment]
+    skills: [Skill]
+    conditions: [Condition]
+    backgrounds: [Background]
+    languages: [Language]
+    feats: [Feat]
+    spells: [Spell]
+    spellschools: [SpellSchool]
+    psyonics: [Psyonic]
+    deities: [Deity]
+    supernaturalpassives: [SupernaturalPassive]
+    vehicles: [Vehicle]
 }
 
 type Mutation{
-    createRace(name: String!): Race
+
+    # createCharacter() - being left till last
+    # updateCharacter() - being left till last
+    # deleteCharacter() - being left till last
+
+    createRace(name: String!, traits: [Trait]): Race
+    updateRace(id: Int!, name: String, traits: [Trait]): Race
     deleteRace(id: Int!): Race
+
+    createClass(name: String!, hitdice: String!, hpFirstLevel: Int!, hpperlevel: Int!, hpperlevel_roll: Int!, proficiencies: [Proficiency!]!, classfeatures: [ClassFeature!]!, classresources: [ClassResource!]!): Class
+    updateClass(id: Int! name: String, hitdice: String, hpFirstLevel: Int, hpperlevel: Int, hpperlevel_roll: Int, proficiencies: [Proficiency], classfeatures: [ClassFeature], classresources: [ClassResource]): Class
+    deleteClass(id: Int!): Class
+
     createDataResource(name: String!, acronym: String!): DataResource
+    updateDataResource(id: Int!, name: String, acronym: String): DataResource
+    deleteDataResource(id: Int!): DataResource
+
+    createLanguage(name: String!, type: String!, script: String, source: DataResource!): Language
+    updateLanguage(id: Int!, name: String, type: String, script: String, source: DataResource): Language
+    deteleLanguage(id: Int!): Language
+
+    createFeat(name: String!, abillity: String, prerequisite: String, description: String!, source: DataResource!): Feat
+    updateFeat(id: Int!, name: String, abillity: String, prerequisite: String, description: String, source: DataResource): Feat
+    deleteFeat(id: Int!): Feat
+
+    createSpell(name: String!, level: Int!, time: String!, school: SpellSchool!, concentration: Boolean, range: String!, class: Class! source: DataResource!): Spell
+    updateSpell(id: Int!, name: String, level: Int, time: String, school: SpellSchool, concentration: Boolean, range: String, source: DataResource): Spell
+    deleteSpell(id: Int!): Spell
+
+    createSpellSchool(name: String!, summay: String!, description: String!): SpellSchool
+    updateSpellSchool(id: Int! name: String, summay: String, description: String): SpellSchool
+    deleteSpellSchool(id: Int!): SpellSchool
+
+    createPsyonic(name: String!, type: String!, order: String!, description: String!, source: DataResource): Psyonic
+    updatePsyonic(id: Int! name: String, type: String, order: String, description: String, source: DataResource): Psyonic
+    deletePsyonic(id: Int!): Psyonic
+
+    createDeity(name: String!, alignment: String!, domains: String!, pantheon: String!, province: String!, symbol: String!, description: String!): Deity
+    updateDeity(id: String!, name: String, alignment: String, domains: String, pantheon: String, province: String, symbol: String, description: String): Deity
+    deleteDeity(id: Int!): Deity
+
+    createSupernaturalPassive(name: String!, type: String!, description: String!, source: DataResource!): SupernaturalPassive
+    updateSupernaturalPassive(id: Int!, name: String, type: String, description: String, source: DataResource): SupernaturalPassive
+    deleteSupernaturalPassive(id: Int!): SupernaturalPassive
+
+    createProficiency(name: String!, bonus: String, attribute: String, modifier: Int, type: String!): Proficiency
+    updateProficiency(id: Int!, name: String, bonus: String, attribute: String, modifier: Int, type: String): Proficiency
+    deleteProficiency(id: Int!): Proficiency
+
+    createTrait(name: String!, description: String!, class: Class!, level: Int!): Trait
+    updateTrait(id: Int!, name: String, description: String, class: Class, level: Int): Trait
+    deleteTrait(id: Int!): Trait
+
+    createVehicle(
+      name: String!,
+      type: String!,
+      size: String!,
+      sizedimensions: String!,
+      creaturecapacity: String!,
+      cargocapacity: String!,
+      travelpace: String!,
+      speed: String!,
+      strength: Int,
+      strengthmod: Int,
+      dexteritymod: Int,
+      constitution: Int,
+      constitutionmod: Int,
+      intelligence: Int, 
+      intelligencemod: Int,
+      wisdom: Int,
+      widsommod: Int,
+      charisma: Int,
+      charismamod: Int,
+      damageimmunities: String,
+      conditionimmunities: [Condition]
+      vehicleactions: [VehicleAction],
+      source: DataResource
+    ): Vehicle
+
+    updateVehicle(
+      name: String!,
+      type: String!,
+      size: String!,
+      sizedimensions: String!,
+      creaturecapacity: String!,
+      cargocapacity: String!,
+      travelpace: String!,
+      speed: String!,
+      strength: Int,
+      strengthmod: Int,
+      dexteritymod: Int,
+      constitution: Int,
+      constitutionmod: Int,
+      intelligence: Int, 
+      intelligencemod: Int,
+      wisdom: Int,
+      widsommod: Int,
+      charisma: Int,
+      charismamod: Int,
+      damageimmunities: String,
+      conditionimmunities: [Condition]
+      vehicleactions: [VehicleAction],
+      source: DataResource
+    ): Vehicle
+    deleteVehicle( id: Int! ): Vehicle
+
+    createVehicleAction(vehicle: Vehicle, name: String!, description: String!): VehicleAction
+    updateVehicleAction(id: Int, vehicle: Vehicle, name: String!, description: String!): VehicleAction
+    deleteVehicle(id: Int!): VehicleAction
 }

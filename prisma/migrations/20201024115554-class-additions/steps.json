@@ -1,0 +1,40 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Spell",
+      "field": "class",
+      "type": "Class",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Proficiency",
+      "field": "bonus",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Proficiency",
+      "field": "attribute",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Proficiency",
+      "field": "modifier",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Proficiency",
+      "field": "type",
+      "type": "String",
+      "arity": "Optional"
+    }
+  ]
+}
