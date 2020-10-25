@@ -516,7 +516,7 @@ type Mutation{
     deletePsyonic(id: Int!): Psyonic
 
     createDeity(name: String!, alignment: String!, domains: String!, pantheon: String!, province: String!, symbol: String!, description: String!): Deity
-    updateDeity(id: String!, name: String, alignment: String, domains: String, pantheon: String, province: String, symbol: String, description: String): Deity
+    updateDeity(id: Int!, name: String, alignment: String, domains: String, pantheon: String, province: String, symbol: String, description: String): Deity
     deleteDeity(id: Int!): Deity
 
     createSupernaturalPassive(name: String!, type: String!, description: String!, source: DataResourceInput!): SupernaturalPassive
