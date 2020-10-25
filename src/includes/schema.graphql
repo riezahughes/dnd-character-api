@@ -73,10 +73,23 @@ type Equipment{
   description: String!
 }
 
+input EquipmentInput{
+  name: String!
+  type: String!
+  goldworth: String!
+  weight: String!
+  description: String!
+}
+
 type Race{
   id: Int!
   name: String!
   traits: [Trait]
+}
+
+input RaceInput{
+  name: String!
+  traits: [TraitInput]
 }
 
 type Class{
@@ -91,9 +104,27 @@ type Class{
   classresources: [ClassResource]
 }
 
+input ClassInput{
+  name: String!
+  hitdice: String!
+  hpfirstlevel: Int!
+  hpperlevel: Int!
+  hpperlevel_roll: Int!
+  proficiencies: [ProficiencyInput]
+  classfeatures: [ClassFeatureInput]
+  classresources: [ClassResourceInput]
+}
+
 type ClassResource{
   id: Int!
   class: Class!
+  name: String!
+  level: Int!
+  value: String!
+}
+
+input ClassResourceInput{
+  class: ClassInput!
   name: String!
   level: Int!
   value: String!
@@ -107,9 +138,22 @@ type ClassFeature{
   description: String!
 }
 
+input ClassFeatureInput{
+  class: ClassInput!
+  name: String!
+  level: Int!
+  description: String!  
+}
+
 type SubClass{
   id: Int!
   name: String!
+  class: Class!
+}
+
+input SubClassInput{
+  name: String!
+  class: ClassInput!
 }
 
 type Skill{
@@ -117,6 +161,12 @@ type Skill{
   name: String!
   description: String!
   statroll: String!
+}
+
+input SkillInput{
+  name: String!
+  description: String!
+  statroll: String!  
 }
 
 type Condition{
@@ -127,11 +177,25 @@ type Condition{
   source: DataResource!
 }
 
+input ConditionInput{
+  id: Int!
+  type: String!
+  name: String!
+  description: String!
+  source: DataResourceInput!
+}
+
 type Background{
   id: Int!
   name: String!
   skillproficiencies: String!
   source: DataResource!
+}
+
+input BackgroundInput{
+  name: String!
+  skillproficiencies: String!
+  source: DataResourceInput!
 }
 
 type Language{
@@ -142,6 +206,13 @@ type Language{
   source: DataResource!
 }
 
+input LanguageInput{
+  name: String!
+  type: String!
+  script: String!
+  source: DataResourceInput!
+}
+
 type Feat{
   id: Int!
   name: String!
@@ -149,6 +220,14 @@ type Feat{
   prerequisite: String
   description: String!
   source: DataResource!
+}
+
+input FeatInput{
+  name: String!
+  ability: String
+  prerequisite: String
+  description: String!
+  source: DataResourceInput!
 }
 
 type Spell{
@@ -163,8 +242,25 @@ type Spell{
   source: DataResource!
 }
 
+input SpellInput{
+  name: String!
+  class: ClassInput!
+  level: Int!
+  time: String!
+  school: SpellSchoolInput!
+  concentration: Boolean
+  range: String!
+  source: DataResourceInput!  
+}
+
 type SpellSchool{
   id: Int!
+  name: String!
+  summary: String!
+  description: String!
+}
+
+input SpellSchoolInput{
   name: String!
   summary: String!
   description: String!
@@ -179,9 +275,27 @@ type Psyonic{
   source: DataResource
 }
 
+input PsyonicInput{
+  name: String!
+  type: String!
+  order: String!
+  description: String!
+  source: DataResourceInput
+}
+
 
 type Deity{
   id: Int!
+  name: String!
+  alignment: String!
+  domains: String!
+  pantheon: String!
+  province: String!
+  symbol: String
+  description: String!
+}
+
+input DeityInput{
   name: String!
   alignment: String!
   domains: String!
@@ -199,8 +313,23 @@ type SupernaturalPassive{
   source: DataResource
 }
 
+input SupernaturalPassiveInput{
+  type: String!
+  name: String!
+  description: String!
+  source: DataResourceInput
+}
+
 type Proficiency{
   id: Int!
+  name: String!
+  bonus: String
+  attribute: String
+  modifier: Int
+  type: String!
+}
+
+input ProficiencyInput{
   name: String!
   bonus: String
   attribute: String
@@ -212,12 +341,22 @@ type Trait{
   id: Int!
   name: String!
   description: String!
-  class: Class!
-  level: Int!
+  race: Race
+}
+
+input TraitInput{
+  name: String!
+  description: String!
+  race: RaceInput
 }
 
 type DataResource{
   id: Int!
+  name: String!
+  acronym: String!
+}
+
+input DataResourceInput{
   name: String!
   acronym: String!
 }
@@ -241,7 +380,7 @@ type Vehicle{
   intelligence: Int
   intelligencemod: Int
   wisdom: Int
-  widsommod: Int
+  wisdommod: Int
   charisma: Int
   charismamod: Int
   damageimmunities: String
@@ -250,9 +389,42 @@ type Vehicle{
   source: DataResource
 }
 
+input VehicleInput{
+  name: String!
+  type: String!
+  size: String!
+  sizedimensions: String!
+  creaturecapacity: String!
+  cargocapacity: String!
+  travelpace: String!
+  speed: String!
+  strength: Int
+  strengthmod: Int
+  dexterity: Int
+  dexteritymod: Int
+  constitution: Int
+  constitutionmod: Int
+  intelligence: Int
+  intelligencemod: Int
+  wisdom: Int
+  wisdommod: Int
+  charisma: Int
+  charismamod: Int
+  damageimmunities: String
+  conditionimmunities: [ConditionInput]
+  vehicleactions: [VehicleActionInput]
+  source: DataResourceInput
+}
+
 type VehicleAction{
   id: Int!
   vehicle: Vehicle
+  name: String!
+  description: String!
+}
+
+input VehicleActionInput{
+  vehicle: VehicleInput
   name: String!
   description: String!
 }
@@ -311,52 +483,52 @@ type Mutation{
     # updateCharacter() - being left till last
     # deleteCharacter() - being left till last
 
-    createRace(name: String!, traits: [Trait]): Race
-    updateRace(id: Int!, name: String, traits: [Trait]): Race
+    createRace(name: String!, traits: [TraitInput]): Race
+    updateRace(id: Int!, name: String, traits: [TraitInput]): Race
     deleteRace(id: Int!): Race
 
-    createClass(name: String!, hitdice: String!, hpFirstLevel: Int!, hpperlevel: Int!, hpperlevel_roll: Int!, proficiencies: [Proficiency!]!, classfeatures: [ClassFeature!]!, classresources: [ClassResource!]!): Class
-    updateClass(id: Int! name: String, hitdice: String, hpFirstLevel: Int, hpperlevel: Int, hpperlevel_roll: Int, proficiencies: [Proficiency], classfeatures: [ClassFeature], classresources: [ClassResource]): Class
+    createClass(name: String!, hitdice: String!, hpFirstLevel: Int!, hpperlevel: Int!, hpperlevel_roll: Int!, proficiencies: [ProficiencyInput!]!, classfeatures: [ClassFeatureInput!]!, classresources: [ClassResourceInput!]!): Class
+    updateClass(id: Int! name: String, hitdice: String, hpFirstLevel: Int, hpperlevel: Int, hpperlevel_roll: Int, proficiencies: [ProficiencyInput], classfeatures: [ClassFeatureInput], classresources: [ClassResourceInput]): Class
     deleteClass(id: Int!): Class
 
     createDataResource(name: String!, acronym: String!): DataResource
     updateDataResource(id: Int!, name: String, acronym: String): DataResource
     deleteDataResource(id: Int!): DataResource
 
-    createLanguage(name: String!, type: String!, script: String, source: DataResource!): Language
-    updateLanguage(id: Int!, name: String, type: String, script: String, source: DataResource): Language
+    createLanguage(name: String!, type: String!, script: String, source: DataResourceInput!): Language
+    updateLanguage(id: Int!, name: String, type: String, script: String, source: DataResourceInput): Language
     deleteLanguage(id: Int!): Language
 
-    createFeat(name: String!, abillity: String, prerequisite: String, description: String!, source: DataResource!): Feat
-    updateFeat(id: Int!, name: String, abillity: String, prerequisite: String, description: String, source: DataResource): Feat
+    createFeat(name: String!, abillity: String, prerequisite: String, description: String!, source: DataResourceInput!): Feat
+    updateFeat(id: Int!, name: String, abillity: String, prerequisite: String, description: String, source: DataResourceInput): Feat
     deleteFeat(id: Int!): Feat
 
-    createSpell(name: String!, level: Int!, time: String!, school: SpellSchool!, concentration: Boolean, range: String!, class: Class! source: DataResource!): Spell
-    updateSpell(id: Int!, name: String, level: Int, time: String, school: SpellSchool, concentration: Boolean, range: String, source: DataResource): Spell
+    createSpell(name: String!, level: Int!, time: String!, school: SpellSchoolInput!, concentration: Boolean, range: String!, class: ClassInput! source: DataResourceInput!): Spell
+    updateSpell(id: Int!, name: String, level: Int, time: String, school: SpellSchoolInput, concentration: Boolean, range: String, class: ClassInput!, source: DataResourceInput): Spell
     deleteSpell(id: Int!): Spell
 
     createSpellSchool(name: String!, summay: String!, description: String!): SpellSchool
     updateSpellSchool(id: Int! name: String, summay: String, description: String): SpellSchool
     deleteSpellSchool(id: Int!): SpellSchool
 
-    createPsyonic(name: String!, type: String!, order: String!, description: String!, source: DataResource): Psyonic
-    updatePsyonic(id: Int! name: String, type: String, order: String, description: String, source: DataResource): Psyonic
+    createPsyonic(name: String!, type: String!, order: String!, description: String!, source: DataResourceInput): Psyonic
+    updatePsyonic(id: Int! name: String, type: String, order: String, description: String, source: DataResourceInput): Psyonic
     deletePsyonic(id: Int!): Psyonic
 
     createDeity(name: String!, alignment: String!, domains: String!, pantheon: String!, province: String!, symbol: String!, description: String!): Deity
     updateDeity(id: String!, name: String, alignment: String, domains: String, pantheon: String, province: String, symbol: String, description: String): Deity
     deleteDeity(id: Int!): Deity
 
-    createSupernaturalPassive(name: String!, type: String!, description: String!, source: DataResource!): SupernaturalPassive
-    updateSupernaturalPassive(id: Int!, name: String, type: String, description: String, source: DataResource): SupernaturalPassive
+    createSupernaturalPassive(name: String!, type: String!, description: String!, source: DataResourceInput!): SupernaturalPassive
+    updateSupernaturalPassive(id: Int!, name: String, type: String, description: String, source: DataResourceInput): SupernaturalPassive
     deleteSupernaturalPassive(id: Int!): SupernaturalPassive
 
     createProficiency(name: String!, bonus: String, attribute: String, modifier: Int, type: String!): Proficiency
     updateProficiency(id: Int!, name: String, bonus: String, attribute: String, modifier: Int, type: String): Proficiency
     deleteProficiency(id: Int!): Proficiency
 
-    createTrait(name: String!, description: String!, class: Class!, level: Int!): Trait
-    updateTrait(id: Int!, name: String, description: String, class: Class, level: Int): Trait
+    createTrait(name: String!, description: String!, race: RaceInput!, level: Int!): Trait
+    updateTrait(id: Int!, name: String, description: String, race: RaceInput, level: Int): Trait
     deleteTrait(id: Int!): Trait
 
     createVehicle(
@@ -380,9 +552,9 @@ type Mutation{
       charisma: Int,
       charismamod: Int,
       damageimmunities: String,
-      conditionimmunities: [Condition]
-      vehicleactions: [VehicleAction],
-      source: DataResource
+      conditionimmunities: [ConditionInput]
+      vehicleactions: [VehicleActionInput],
+      source: DataResourceInput
     ): Vehicle
 
     updateVehicle(
@@ -406,13 +578,13 @@ type Mutation{
       charisma: Int,
       charismamod: Int,
       damageimmunities: String,
-      conditionimmunities: [Condition]
-      vehicleactions: [VehicleAction],
-      source: DataResource
+      conditionimmunities: [ConditionInput]
+      vehicleactions: [VehicleActionInput],
+      source: DataResourceInput
     ): Vehicle
     deleteVehicle( id: Int! ): Vehicle
 
-    createVehicleAction(vehicle: Vehicle, name: String!, description: String!): VehicleAction
-    updateVehicleAction(id: Int, vehicle: Vehicle, name: String!, description: String!): VehicleAction
+    createVehicleAction(vehicle: VehicleInput, name: String!, description: String!): VehicleAction
+    updateVehicleAction(id: Int, vehicle: VehicleInput, name: String!, description: String!): VehicleAction
     deleteVehicleAction(id: Int!): VehicleAction
 }

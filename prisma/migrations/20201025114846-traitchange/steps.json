@@ -1,0 +1,22 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Trait",
+      "field": "race",
+      "type": "Race",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Trait",
+      "field": "class"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Trait",
+      "field": "level"
+    }
+  ]
+}
