@@ -83,12 +83,18 @@ input EquipmentInput{
 
 type Race{
   id: Int!
+  unique_id: String!
   name: String!
+  speed: String!
+  size: String!
   traits: [Trait]
 }
 
 input RaceInput{
+  unique_id: String!
   name: String!
+  speed: String!
+  size: String!
   traits: [TraitInput]
 }
 
@@ -483,8 +489,8 @@ type Mutation{
     # updateCharacter() - being left till last
     # deleteCharacter() - being left till last
 
-    createRace(name: String!, traits: [TraitInput]): Race
-    updateRace(id: Int!, name: String, traits: [TraitInput]): Race
+    createRace(name: String!, unique_id: String!, speed: String!, size: String!, traits: [TraitInput]): Race
+    updateRace(id: Int!, name: String, speed: String, traits: [TraitInput]): Race
     deleteRace(id: Int!): Race
 
     createClass(name: String!, hitdice: String!, hpFirstLevel: Int!, hpperlevel: Int!, hpperlevel_roll: Int!, proficiencies: [ProficiencyInput!]!, classfeatures: [ClassFeatureInput!]!, classresources: [ClassResourceInput!]!): Class

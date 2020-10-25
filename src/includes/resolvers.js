@@ -41,13 +41,16 @@ const resolvers = {
   Mutation: {
     createRace: (_, args, context) => context.prisma.race.create({
       data: {
+        unique_id: args.unique_id,
         name: args.name,
+        speed: args.speed,
+        size: args.size,
         traits: {
           create: {
             name: args.traits.name,
             description: args.traits.description,
-          }
-        }
+          },
+        },
       },
     }),
     updateRace: (_, args, context) => context.prisma.race.update({
@@ -132,7 +135,7 @@ const resolvers = {
       },
       where: {
         id: args.id,
-      },      
+      },
     }),
     deleteLanguage: (_, args, context) => context.prisma.language.delete({
       where: {
@@ -157,8 +160,8 @@ const resolvers = {
         source: args.source,
       },
       where: {
-        id: args.id
-      }
+        id: args.id,
+      },
     }),
     deleteFeat: (_, args, context) => context.prisma.feat.delete({
       where: {
@@ -187,8 +190,8 @@ const resolvers = {
         source: args.dataResource,
       },
       where: {
-        id: args.id
-      }
+        id: args.id,
+      },
     }),
     deleteSpell: (_, args, context) => context.prisma.spell.delete({
       where: {
@@ -209,8 +212,8 @@ const resolvers = {
         description: args.description,
       },
       where: {
-        id: args.is
-      }
+        id: args.is,
+      },
     }),
     deleteSpellSchool: (_, args, context) => context.prisma.spellschool.delete({
       where: {
@@ -223,7 +226,7 @@ const resolvers = {
         type: args.type,
         order: args.order,
         description: args.description,
-        source: args.dataResource
+        source: args.dataResource,
       },
     }),
     updatePsyonic: (_, args, context) => context.prisma.psyonic.update({
@@ -232,11 +235,11 @@ const resolvers = {
         type: args.type,
         order: args.order,
         description: args.description,
-        source: args.dataResource
+        source: args.dataResource,
       },
       where: {
-        id: args.id
-      }
+        id: args.id,
+      },
     }),
     deletePsyonic: (_, args, context) => context.prisma.psyonic.delete({
       where: {
@@ -265,8 +268,8 @@ const resolvers = {
         description: args.description,
       },
       where: {
-        id: args.id
-      }
+        id: args.id,
+      },
     }),
     deleteDeity: (_, args, context) => context.prisma.deity.delete({
       where: {
@@ -289,8 +292,8 @@ const resolvers = {
         source: args.source,
       },
       where: {
-        id: args.id
-      }
+        id: args.id,
+      },
     }),
     deleteSupernaturalPassive: (_, args, context) => context.prisma.supernaturalPassive.delete({
       where: {
@@ -316,7 +319,7 @@ const resolvers = {
       },
       where: {
         id: args.id,
-      }
+      },
     }),
     deleteProficiency: (_, args, context) => context.prisma.proficiency.delete({
       where: {
@@ -340,7 +343,7 @@ const resolvers = {
       },
       where: {
         id: args.id,
-      }
+      },
     }),
     deleteTrait: (_, args, context) => context.prisma.trait.delete({
       where: {
@@ -401,8 +404,8 @@ const resolvers = {
         source: args.source,
       },
       where: {
-        id: args.id
-      }
+        id: args.id,
+      },
     }),
     deleteVehicle: (_, args, context) => context.prisma.vehicle.delete({
       where: {
@@ -424,7 +427,7 @@ const resolvers = {
       },
       where: {
         id: args.id,
-      }
+      },
     }),
     deleteVehicleAction: (_, args, context) => context.prisma.vehiceleaction.delete({
       where: {

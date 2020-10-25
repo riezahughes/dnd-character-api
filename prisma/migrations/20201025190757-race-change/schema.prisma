@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -88,7 +88,6 @@ model Equipment{
 
 model Race{
   id  Int @default(autoincrement()) @id
-  unique_id String? @unique
   name  String?
   speed String?
   size String?
